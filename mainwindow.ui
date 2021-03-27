@@ -17,8 +17,8 @@
    <widget class="QLabel" name="label_trem1">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>130</y>
+      <x>60</x>
+      <y>30</y>
       <width>20</width>
       <height>20</height>
      </rect>
@@ -68,7 +68,7 @@
       <x>330</x>
       <y>30</y>
       <width>20</width>
-      <height>139</height>
+      <height>140</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -84,7 +84,7 @@
       <x>60</x>
       <y>30</y>
       <width>20</width>
-      <height>139</height>
+      <height>140</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -126,7 +126,7 @@
       <x>600</x>
       <y>30</y>
       <width>21</width>
-      <height>137</height>
+      <height>140</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -142,7 +142,7 @@
       <x>350</x>
       <y>30</y>
       <width>250</width>
-      <height>17</height>
+      <height>20</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -171,8 +171,8 @@
    <widget class="QLabel" name="label_trem2">
     <property name="geometry">
      <rect>
-      <x>490</x>
-      <y>150</y>
+      <x>330</x>
+      <y>30</y>
       <width>20</width>
       <height>20</height>
      </rect>
@@ -190,7 +190,7 @@
       <x>870</x>
       <y>30</y>
       <width>21</width>
-      <height>137</height>
+      <height>140</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -206,7 +206,7 @@
       <x>620</x>
       <y>150</y>
       <width>250</width>
-      <height>17</height>
+      <height>20</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -222,7 +222,7 @@
       <x>620</x>
       <y>30</y>
       <width>250</width>
-      <height>17</height>
+      <height>20</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -238,7 +238,7 @@
       <x>200</x>
       <y>167</y>
       <width>20</width>
-      <height>121</height>
+      <height>123</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -253,8 +253,8 @@
      <rect>
       <x>470</x>
       <y>167</y>
-      <width>21</width>
-      <height>120</height>
+      <width>20</width>
+      <height>123</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -270,7 +270,7 @@
       <x>740</x>
       <y>167</y>
       <width>21</width>
-      <height>121</height>
+      <height>123</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -285,8 +285,8 @@
      <rect>
       <x>600</x>
       <y>30</y>
-      <width>21</width>
-      <height>17</height>
+      <width>20</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -299,7 +299,7 @@
    <widget class="QLabel" name="label_trem4">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>200</x>
       <y>150</y>
       <width>20</width>
       <height>20</height>
@@ -334,7 +334,7 @@
       <x>220</x>
       <y>270</y>
       <width>250</width>
-      <height>17</height>
+      <height>20</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -350,7 +350,7 @@
       <x>490</x>
       <y>270</y>
       <width>250</width>
-      <height>17</height>
+      <height>20</height>
      </rect>
     </property>
     <property name="styleSheet">

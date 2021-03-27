@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include <pthread.h>
 #include <QMutex>
-pthread_mutex_t mutex[5];
+pthread_mutex_t mutex[6];
 QMutex qmutex;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     printf("Iniciando os mutex.\n");
-    for(int i = 0; i < 5; i++)
+    for(int i = 0; i < 6; i++)
         pthread_mutex_init(&mutex[i], NULL);
 
     // Valores das velocidades dos trens

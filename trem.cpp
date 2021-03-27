@@ -71,6 +71,16 @@ void Trem::run(){
                 pthread_mutex_lock(&mutex[3]);
             }
 
+            if(x == 580 && y == 30){
+                // TRAVANDO O MUTEX 1
+                pthread_mutex_lock(&mutex[1]);
+            }
+
+            if(x == 600 && y == 130){
+                // TRAVANDO O MUTEX 4
+                pthread_mutex_lock(&mutex[4]);
+            }
+
             // DESTRAVA
             if(x == 350 && y == 30){
                 // DESTRAVANDO O MUTEX 0
@@ -80,7 +90,14 @@ void Trem::run(){
                 // DESTRAVANDO O MUTEX 3
                 pthread_mutex_unlock(&mutex[3]);
             }
+            if(x == 580 && y == 150){
+                pthread_mutex_unlock(&mutex[1]);
+            }
 
+            if(x == 450 && y == 150){
+                // DESTRAVANDO O MUTEX 4
+                pthread_mutex_unlock(&mutex[4]);
+            }
 
             if(velocidade == 0){
                 emit updateGUI(ID, x,y);
@@ -98,19 +115,21 @@ void Trem::run(){
             break;
         case 3: //Trem 3
 //            // TRAVA
-//            printf("(%d, %d)\n", x, y);
-//            if(x == 200 && y == 267){
-//                // DESTRAVANDO O MUTEX 3
-//                printf("Travando o mutex3...");
-//                pthread_mutex_lock(mutex3);
-//            }
+            if(x == 620 && y == 30) {
+                pthread_mutex_unlock(&mutex[1]);
+            }
 
+            if(x == 760 && y == 150){
+                pthread_mutex_lock(&mutex[5]);
+            }
 //            // DESTRAVA
-//            if(x == 330 && y == 267){
-//                // TRAVANDO O MUTEX 3
-//                printf("Destravando o mutex3");
-//                pthread_mutex_lock(mutex3);
-//            }
+            if(x == 620 && y == 150) {
+                pthread_mutex_lock(&mutex[1]);
+            }
+            if(x == 600 && y == 130){
+                pthread_mutex_unlock(&mutex[5]);
+            }
+
             if(velocidade == 0){
                 emit updateGUI(ID, x,y);
                 break;
@@ -138,6 +157,11 @@ void Trem::run(){
                 pthread_mutex_lock(&mutex[3]);
             }
 
+            if(x == 450 && y == 150){
+                // TRAVANDO O MUTEX 6
+                pthread_mutex_lock(&mutex[6]);
+            }
+
             // DESTRAVA
             if(x == 350 && y == 150){
                 // DESTRAVANDO O MUTEX 2
@@ -149,6 +173,10 @@ void Trem::run(){
                 pthread_mutex_unlock(&mutex[3]);
             }
 
+            if(x == 450 && y == 270){
+                // DESTRAVANDO O MUTEX 6
+                pthread_mutex_unlock(&mutex[6]);
+            }
 
             if(velocidade == 0){
                 emit updateGUI(ID, x,y);
@@ -165,6 +193,34 @@ void Trem::run(){
             emit updateGUI(ID, x,y);    //Emite um sinal
             break;
         case 5: //Trem 5
+            // Trava
+            if(x == 580 && y == 150){
+                pthread_mutex_lock(&mutex[5]);
+            }
+
+            if(x == 470 && y == 170){
+                pthread_mutex_lock(&mutex[4]);
+            }
+
+            if(x == 490 && y == 270){
+                // TRAVANDO O MUTEX 6
+                pthread_mutex_lock(&mutex[6]);
+            }
+
+            // Destrava
+            if(x == 740 && y == 170){
+                pthread_mutex_unlock(&mutex[5]);
+            }
+
+            if(x == 620 && y == 150){
+                pthread_mutex_unlock(&mutex[4]);
+            }
+
+            if(x == 490 && y == 150){
+                // DESTRAVANDO O MUTEX 6
+                pthread_mutex_unlock(&mutex[6]);
+            }
+
             if(velocidade == 0){
                 emit updateGUI(ID, x,y);
                 break;
