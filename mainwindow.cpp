@@ -1,13 +1,17 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <pthread.h>
+
+// Um mutex para cada região crítica
 pthread_mutex_t mutex[6];
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     printf("Iniciando os mutex.\n");
+    // Região crítica 1 corresponde ao mutex 0, região crítica 2 corresponde ao mutex 1...
     for(int i = 0; i < 6; i++)
         pthread_mutex_init(&mutex[i], NULL);
 
@@ -52,8 +56,16 @@ MainWindow::MainWindow(QWidget *parent) :
 
 //Função que será executada quando o sinal UPDATEGUI for emitido
 void MainWindow::updateInterface(int id, int x, int y){
+
+//    printf("Trem %d executou\n", id);
     switch(id){
+    // Em todos os cases são atualizadas as posições dos trens na interface. Antes de atualizar adicionei
+    // trechos de códigos para os caso de trens que precisem dá ré. Essa lógica se repete nos demais cases.
+
     case 1: { //Atualiza a posição do objeto da tela (quadrado) que representa o trem1
+
+        // Situações onde o trem deve da ré
+
         int t2_pos_x = ui->label_trem2->x();
         int t2_pos_y = ui->label_trem2->y();
         bool t2_na_regiao_critica = ( (t2_pos_x >= 330) && (t2_pos_x <= 470) && (t2_pos_y == 150) );
@@ -70,7 +82,8 @@ void MainWindow::updateInterface(int id, int x, int y){
             }
         }
 
-        if(x == 330 && y >= 30 && t4_pos_x >= 310 && t4_pos_y == 150 && t2_pos_x <= 600 && t2_pos_y == 150 && t5_pos_x == 470 && t5_pos_y == 170 && trem1->get_passo() > 0){
+        // Não foram criadas as variáveis do tipo bool para outros casos de dar ré
+        if(x == 330 && y >= 30 && t4_pos_x == 310 && t4_pos_y == 150 && t2_pos_x <= 600 && t2_pos_y == 150 && t5_pos_x == 470 && t5_pos_y == 170 && trem1->get_passo() > 0){
             trem1->inverter_passo();
         }
 
@@ -85,8 +98,8 @@ void MainWindow::updateInterface(int id, int x, int y){
         int t5_pos_x = ui->label_trem5->x();
         int t5_pos_y = ui->label_trem5->y();
         bool t5_na_regiao_critica = ( (t5_pos_x >= 470) && (t5_pos_x <= 600) && (t5_pos_y <= 150) );
-//        int t4_pos_x = ui->label_trem4->x();
-//        int t4_pos_y = ui->label_trem4->y();
+        int t4_pos_x = ui->label_trem4->x();
+        int t4_pos_y = ui->label_trem4->y();
 //        int t1_pos_x = ui->label_trem1->x();
 //        int t1_pos_y = ui->label_trem1->y();
 
@@ -94,6 +107,10 @@ void MainWindow::updateInterface(int id, int x, int y){
             if(x == 600 && trem2->get_passo() > 0 ){
                 trem2->inverter_passo();
             }
+        }
+
+        if(t4_pos_x == 450 && t4_pos_y == 150 && t5_pos_x == 470 && t5_pos_y == 170 && x <= 600 && y == 150 && trem2->get_passo() > 0){
+            trem2->inverter_passo();
         }
 
 //        if(t1_pos_x == 330 && t1_pos_y == 130 && t4_pos_x == 310 && t4_pos_y == 150 && x >= 350 && x <= 360 && y == 150) {
@@ -121,7 +138,7 @@ void MainWindow::updateInterface(int id, int x, int y){
         bool t5_na_regiao_critica = ( (t5_pos_x == 330) && (t5_pos_y <= 130) );
 
         if(t2_na_regiao_critica && t1_na_regiao_critica) {
-            if(x >= 200 && x <= 330 && y == 150 && trem4->get_passo() > 0 ){
+            if(x >= 200 && x <= 310 && y == 150 && trem4->get_passo() > 0 ){
                 trem4->inverter_passo();
             }
         }
@@ -132,6 +149,7 @@ void MainWindow::updateInterface(int id, int x, int y){
                 trem4->inverter_passo();
             }
         }
+
 
         trem4->setVelocidade(ui->horizontalSlider_trem_4->value());
         ui->label_trem4->setGeometry(x,y,20,20);
@@ -153,7 +171,7 @@ void MainWindow::updateInterface(int id, int x, int y){
             }
         }
 
-        if((x >= 470 && x <= 600 && y == 150) && (t2_pos_x == 600 && t2_pos_y == 130) && (t3_pos_x >= 600 && t3_pos_x <= 740 && t3_pos_y == 150)) {
+        if((x >= 500 && x <= 600 && y == 150) && (t2_pos_x == 600 && t2_pos_y == 130) && (t3_pos_x >= 600 && t3_pos_x <= 740 && t3_pos_y == 150)) {
             if(trem5->get_passo() > 0 ){
                 trem5->inverter_passo();
             }
