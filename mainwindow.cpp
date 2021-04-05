@@ -71,7 +71,7 @@ void MainWindow::updateInterface(int id, int x, int y){
         bool t2_na_regiao_critica = ( (t2_pos_x >= 330) && (t2_pos_x <= 470) && (t2_pos_y == 150) );
         int t4_pos_x = ui->label_trem4->x();
         int t4_pos_y = ui->label_trem4->y();
-        bool t4_na_regiao_critica = ( (t4_pos_x >= 200) && (t4_pos_x <= 330) && (t4_pos_y == 150) );
+        bool t4_na_regiao_critica = ( (t4_pos_x >= 210) && (t4_pos_x <= 330) && (t4_pos_y == 150) );
 
         int t5_pos_x = ui->label_trem5->x();
         int t5_pos_y = ui->label_trem5->y();
@@ -94,7 +94,7 @@ void MainWindow::updateInterface(int id, int x, int y){
     case 2: { //Atualiza a posição do objeto da tela (quadrado) que representa o trem2
         int t3_pos_x = ui->label_trem3->x();
         int t3_pos_y = ui->label_trem3->y();
-        bool t3_na_regiao_critica = ( (t3_pos_x >= 600) && (t3_pos_x <= 740) && (t3_pos_y == 150) );
+        bool t3_na_regiao_critica = ( (t3_pos_x >= 600) && (t3_pos_x <= 760) && (t3_pos_y == 150) );
         int t5_pos_x = ui->label_trem5->x();
         int t5_pos_y = ui->label_trem5->y();
         bool t5_na_regiao_critica = ( (t5_pos_x >= 470) && (t5_pos_x <= 600) && (t5_pos_y <= 150) );
@@ -121,10 +121,24 @@ void MainWindow::updateInterface(int id, int x, int y){
         ui->label_trem2->setGeometry(x,y,20,20);
         break;
     }
-    case 3: //Atualiza a posição do objeto da tela (quadrado) que representa o trem3
+    case 3: {//Atualiza a posição do objeto da tela (quadrado) que representa o trem3
+        int t2_pos_x = ui->label_trem2->x();
+        int t2_pos_y = ui->label_trem2->y();
+        bool t2_na_regiao_critica = ( (t2_pos_x == 600) && (t2_pos_y == 130) );
+        int t5_pos_x = ui->label_trem5->x();
+        int t5_pos_y = ui->label_trem5->y();
+        bool t5_na_regiao_critica = ( (t5_pos_x == 580) && (t5_pos_y == 150) );
+
+        if(x >= 620 && x <= 740 && y == 150 && t2_na_regiao_critica && t5_na_regiao_critica) {
+            if(trem3->get_passo() > 0 ){
+                trem3->inverter_passo();
+            }
+        }
+
         trem3->setVelocidade(ui->horizontalSlider_trem_3->value());
         ui->label_trem3->setGeometry(x,y,20,20);
         break;
+    }
     case 4: {//Atualiza a posição do objeto da tela (quadrado) que representa o trem4
 
         int t2_pos_x = ui->label_trem2->x();
@@ -135,7 +149,6 @@ void MainWindow::updateInterface(int id, int x, int y){
         bool t1_na_regiao_critica = ( (t1_pos_x == 330) && (t1_pos_y == 130) );
         int t5_pos_x = ui->label_trem5->x();
         int t5_pos_y = ui->label_trem5->y();
-        bool t5_na_regiao_critica = ( (t5_pos_x == 330) && (t5_pos_y <= 130) );
 
         if(t2_na_regiao_critica && t1_na_regiao_critica) {
             if(x >= 200 && x <= 310 && y == 150 && trem4->get_passo() > 0 ){
@@ -171,7 +184,7 @@ void MainWindow::updateInterface(int id, int x, int y){
             }
         }
 
-        if((x >= 500 && x <= 600 && y == 150) && (t2_pos_x == 600 && t2_pos_y == 130) && (t3_pos_x >= 600 && t3_pos_x <= 740 && t3_pos_y == 150)) {
+        if((x >= 500 && x < 580 && y == 150) && (t2_pos_x == 600 && t2_pos_y == 130) && (t3_pos_x >= 600 && t3_pos_x <= 760 && t3_pos_y == 150)) {
             if(trem5->get_passo() > 0 ){
                 trem5->inverter_passo();
             }

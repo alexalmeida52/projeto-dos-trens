@@ -144,17 +144,24 @@ void Trem::run(){
                 break;
             }
 //            // TRAVA
+            if(x == 620 && y == 150) {
+                pthread_mutex_lock(&mutex[1]);
+            }
+
+            if(x == 760 && y == 150){
+                if(passo < 0){
+                    pthread_mutex_unlock(&mutex[5]);
+                    passo = 10;
+                    emit updateGUI(ID, x,y);
+                    break;
+                }
+                pthread_mutex_lock(&mutex[5]);
+            }
+//            // DESTRAVA
             if(x == 620 && y == 30) {
                 pthread_mutex_unlock(&mutex[1]);
             }
 
-            if(x == 760 && y == 150){
-                pthread_mutex_lock(&mutex[5]);
-            }
-//            // DESTRAVA
-            if(x == 620 && y == 150) {
-                pthread_mutex_lock(&mutex[1]);
-            }
             if(x == 600 && y == 130){
                 pthread_mutex_unlock(&mutex[5]);
             }
@@ -178,7 +185,6 @@ void Trem::run(){
             // TRAVA
             if(x == 200 && y == 170){
                 // TRAVANDO O MUTEX 2
-                printf("LOCK area 3\n");
                 if(passo < 0){
                     pthread_mutex_unlock(&mutex[2]);
                     passo = 10;
