@@ -3,7 +3,7 @@
 #include <pthread.h>
 
 // Um mutex para cada região crítica
-pthread_mutex_t mutex[6];
+pthread_mutex_t mutex[7];
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     printf("Iniciando os mutex.\n");
     // Região crítica 1 corresponde ao mutex 0, região crítica 2 corresponde ao mutex 1...
-    for(int i = 0; i < 6; i++)
+    for(int i = 0; i < 7; i++)
         pthread_mutex_init(&mutex[i], NULL);
 
     // Valores das velocidades dos trens
@@ -226,4 +226,6 @@ void MainWindow::on_pushButton_2_clicked()
     trem3->terminate();
     trem4->terminate();
     trem5->terminate();
+    for(int i = 0; i < 7; i++)
+        pthread_mutex_destroy(&mutex[i]);
 }
